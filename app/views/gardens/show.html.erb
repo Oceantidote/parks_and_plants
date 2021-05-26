@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<div class="banner" style="background-image: url('<%= @garden.banner_url %>');">
+  <h2><%= @garden.name %></h2>
+  <%= link_to "+ plant", new_garden_plant_path(@garden), class: "btn btn-primary abs-tr"  %>
+</div>
+<div class="container pt-4">
+  <div class="row">
+    <% @garden.plants.each do |plant| %>
+      <div class="col-4">
+        <div class="plant-card" style="background-image: url('<%= plant.image_url %>');">
+          <%= link_to "x", plant_path(plant), method: :delete, class: 'close', data: {confirm: "Are you sure?"}  %>
+          <p><%= plant.name %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_garden_path(@garden) %> |
+<%= link_to 'Back', gardens_path %>
